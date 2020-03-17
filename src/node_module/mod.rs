@@ -167,79 +167,74 @@ struct Package {
 ///
 pub fn collect_dependencies(current_dir: &Path, filename: &str) -> HashMap<String, NodeModule> {
     let mut dependency_map: HashMap<String, NodeModule> = HashMap::new();
-    let mut absolute_filepath = current_dir.join(filename);
 
-    let mut dirname = current_dir;
-    while let Ok(json_str) = fs::read_to_string(&absolute_filepath) {
-        let deserialize: Package =
-            serde_json::from_str(&json_str).expect("The package.json seems not json file");
+    let mut dirname_option: Option<&Path> = Some(current_dir);
+    while let Some(dirname) = dirname_option {
+        let absolute_filepath = &dirname.join(filename);
 
-        if let Some(dependencies) = deserialize.dependencies {
-            for key in dependencies.keys() {
-                let key_string = key.to_string();
+        if let Ok(json_str) = fs::read_to_string(&absolute_filepath) {
+            let deserialize: Package =
+                serde_json::from_str(&json_str).expect("The package.json seems not json file");
 
-                if let None = dependency_map.get(&key_string) {
-                    if let Some(key_value) = dependencies.get(&key_string) {
-                        dependency_map.insert(
-                            key_string.clone(),
-                            NodeModule::new_production(
+            if let Some(dependencies) = deserialize.dependencies {
+                for key in dependencies.keys() {
+                    let key_string = key.to_string();
+
+                    if let None = dependency_map.get(&key_string) {
+                        if let Some(key_value) = dependencies.get(&key_string) {
+                            dependency_map.insert(
                                 key_string.clone(),
-                                key_value.to_owned(),
-                                absolute_filepath.to_owned(),
-                            ),
-                        );
+                                NodeModule::new_production(
+                                    key_string.clone(),
+                                    key_value.to_owned(),
+                                    absolute_filepath.to_owned(),
+                                ),
+                            );
+                        }
+                    }
+                }
+            }
+
+            if let Some(dependencies) = deserialize.devDependencies {
+                for key in dependencies.keys() {
+                    let key_string = key.to_string();
+
+                    if let None = dependency_map.get(&key_string) {
+                        if let Some(key_value) = dependencies.get(&key_string) {
+                            dependency_map.insert(
+                                key_string.clone(),
+                                NodeModule::new_development(
+                                    key_string.clone(),
+                                    key_value.to_owned(),
+                                    absolute_filepath.to_owned(),
+                                ),
+                            );
+                        }
+                    }
+                }
+            }
+
+            if let Some(dependencies) = deserialize.peerDependencies {
+                for key in dependencies.keys() {
+                    let key_string = key.to_string();
+
+                    if let None = dependency_map.get(&key_string) {
+                        if let Some(key_value) = dependencies.get(&key_string) {
+                            dependency_map.insert(
+                                key_string.clone(),
+                                NodeModule::new_peer(
+                                    key_string.clone(),
+                                    key_value.to_owned(),
+                                    absolute_filepath.to_owned(),
+                                ),
+                            );
+                        }
                     }
                 }
             }
         }
-
-        if let Some(dependencies) = deserialize.devDependencies {
-            for key in dependencies.keys() {
-                let key_string = key.to_string();
-
-                if let None = dependency_map.get(&key_string) {
-                    if let Some(key_value) = dependencies.get(&key_string) {
-                        dependency_map.insert(
-                            key_string.clone(),
-                            NodeModule::new_development(
-                                key_string.clone(),
-                                key_value.to_owned(),
-                                absolute_filepath.to_owned(),
-                            ),
-                        );
-                    }
-                }
-            }
-        }
-
-        if let Some(dependencies) = deserialize.peerDependencies {
-            for key in dependencies.keys() {
-                let key_string = key.to_string();
-
-                if let None = dependency_map.get(&key_string) {
-                    if let Some(key_value) = dependencies.get(&key_string) {
-                        dependency_map.insert(
-                            key_string.clone(),
-                            NodeModule::new_peer(
-                                key_string.clone(),
-                                key_value.to_owned(),
-                                absolute_filepath.to_owned(),
-                            ),
-                        );
-                    }
-                }
-            }
-        }
-
-        if let Some(parent_dir) = &dirname.parent() {
-            dirname = parent_dir;
-        } else {
-            break;
-        }
-
-        absolute_filepath = dirname.join(filename);
+        dirname_option = dirname.parent();
     }
-
     dependency_map
 }
 
