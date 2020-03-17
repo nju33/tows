@@ -2,7 +2,7 @@
 name = "tows"
 description = "A tool for Node.js project to install the same dependencies of its project to each workspace package"
 default-run = "tows"
-version = "1.0.1-alpha.0"
+version = "1.0.1"
 include = [
     "**/*.rs",
     "Cargo.toml",
