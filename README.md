@@ -1,9 +1,39 @@
 # Tows
+
+![crates.io](https://badgen.net/crates/v/tows)
+![npm](https://badgen.net/npm/v/@nju33/tows)
+
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 A tool for Node.js project to install the same dependencies of its project to each workspace package
+
+## Usage
+
+### Rust
+
+```bash
+cargo install tows
+
+tows
+```
+
+### Node
+
+```bash
+npx @nju33/tows
+```
+
+### Options
+
+#### `--cwd,-C`
+
+Directory name which `package.json`(default) will be placed.
+
+#### `--filename,-f`
+
+Target filename. (default `package.json`)
 
 ## Contributors ✨
 
