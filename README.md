@@ -2,6 +2,7 @@
 
 [![crates.io](https://badgen.net/crates/v/tows)](https://crates.io/crates/tows)
 [![npm](https://badgen.net/npm/v/@nju33/tows)](https://www.npmjs.com/package/@nju33/tows)
+![cargo-test](https://github.com/nju33/tows/workflows/cargo-test/badge.svg)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
