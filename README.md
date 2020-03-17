@@ -1,7 +1,7 @@
 # Tows
 
-![crates.io](https://badgen.net/crates/v/tows)
-![npm](https://badgen.net/npm/v/@nju33/tows)
+[![crates.io](https://badgen.net/crates/v/tows)](https://crates.io/crates/tows)
+[![npm](https://badgen.net/npm/v/@nju33/tows)](https://www.npmjs.com/package/@nju33/tows)
 
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
 [![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
@@ -34,6 +34,10 @@ Directory name which `package.json`(default) will be placed.
 #### `--filename,-f`
 
 Target filename. (default `package.json`)
+
+## Video
+
+[![asciicast](https://asciinema.org/a/311174.svg)](https://asciinema.org/a/311174)
 
 ## Contributors ✨
 
