@@ -28,5 +28,5 @@ serde_json = "1.0.48"
 termion = "1.5.5"
 
 [package.metadata.release]
-pre-release-commit-message = "build: release {{version}}"
-post-release-commit-message = "build: release {{next_version}}"
+pre-release-commit-message = "build: release {{version}} to crates.io"
+post-release-commit-message = "build: released {{next_version}} to crates.io"
