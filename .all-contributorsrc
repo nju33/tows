@@ -1,0 +1,26 @@
+{
+  "projectName": "tows",
+  "projectOwner": "nju33",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": true,
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "nju33",
+      "name": "純",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/15901038?v=4",
+      "profile": "https://nju33.com/",
+      "contributions": [
+        "doc",
+        "code",
+        "review"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}

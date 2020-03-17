@@ -1,0 +1,39 @@
+{
+  "name": "@nju33/tows",
+  "description": "A tool for Node.js project to install the same dependencies of its project to each workspace package",
+  "publishConfig": {
+    "access": "public"
+  },
+  "bin": {
+    "tows": "./target/release/tows"
+  },
+  "version": "0.0.0",
+  "main": "index.js",
+  "files": [
+    "target/release/tows"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nju33/tows.git"
+  },
+  "author": {
+    "name": "nju33",
+    "email": "nju33.ki@gmail.com",
+    "url": "https://nju33.com"
+  },
+  "bugs": {
+    "url": "https://github.com/nju33/tows/issues"
+  },
+  "keywords": [
+    "command-line-utilities",
+    "monorepo"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-angular": "^8.3.4",
+    "all-contributors-cli": "^6.14.0",
+    "gh-pages": "^2.2.0",
+    "husky": "^4.2.3"
+  }
+}

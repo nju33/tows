@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "name": "parent-node-project",
+  "dependencies": {
+    "redux": "^4.0.5"
+  },
+  "peerDependencies": {
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0"
+  }
+}
